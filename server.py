@@ -2,10 +2,11 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Banco de dados de exemplo (substitua por um banco de dados real)
+# Banco de dados
 ingressos = [
     {"id": 1, "nome": "Ingresso Padrão", "preco": 20},
     {"id": 2, "nome": "Ingresso VIP", "preco": 50},
+    {"id": 3, "nome": "Ingresso Familia", "preco": 100},
 ]
 
 # Endpoint para listar todos os ingressos
