@@ -43,8 +43,15 @@ def atualizar_ingresso(ingresso_id):
 @app.route('/ingressos/<int:ingresso_id>', methods=['DELETE'])
 def excluir_ingresso(ingresso_id):
     global ingressos
-    ingressos = [i for i in ingressos if i['id'] != ingresso_id]
-    return jsonify({"mensagem": "Ingresso excluído com sucesso"})
+    try:
+        ingresso_existente = next((i for i in ingressos if i['id'] == ingresso_id), None)
+        if ingresso_existente:
+            ingressos = [i for i in ingressos if i['id'] != ingresso_id]
+            return jsonify({"mensagem": "Ingresso excluído com sucesso"})
+        else:
+            return jsonify({"mensagem": "Ingresso não encontrado"}), 404
+    except Exception as e:
+        return jsonify({"mensagem": f"Erro interno: {str(e)}"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
