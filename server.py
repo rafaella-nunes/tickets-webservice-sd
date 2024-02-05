@@ -4,9 +4,6 @@ app = Flask(__name__)
 
 # Banco de dados
 ingressos = [
-    {"id": 1, "nome": "Ingresso Padrão", "preco": 20},
-    {"id": 2, "nome": "Ingresso VIP", "preco": 50},
-    {"id": 3, "nome": "Ingresso Familia", "preco": 100},
 ]
 
 # Endpoint para listar todos os ingressos
@@ -19,7 +16,7 @@ def listar_ingressos():
 def obter_ingresso(ingresso_id):
     ingresso = next((i for i in ingressos if i['id'] == ingresso_id), None)
     if ingresso:
-        return jsonify({"ingresso": ingresso})
+        return jsonify(ingresso)
     else:
         return jsonify({"mensagem": "Ingresso não encontrado"}), 404
 
@@ -37,8 +34,10 @@ def atualizar_ingresso(ingresso_id):
     for i, ingresso in enumerate(ingressos):
         if ingresso['id'] == ingresso_id:
             ingressos[i] = ingresso_atualizado
-            return jsonify({"mensagem": "Ingresso atualizado com sucesso"})
+            return jsonify({"mensagem": "Sucesso"})
     return jsonify({"mensagem": "Ingresso não encontrado"}), 404
+
+
 
 # Endpoint para excluir um ingresso
 @app.route('/ingressos/<int:ingresso_id>', methods=['DELETE'])
