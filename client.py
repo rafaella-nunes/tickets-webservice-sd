@@ -36,7 +36,7 @@ if __name__ == "__main__":
         print("4 - Comprar Ingresso")
         print("5 - Deletar Ingresso")
         print("6 - Sair")
-        op = int(input("Escolha uma opção"))
+        op = int(input("Escolha uma opção: "))
         if op == 1:
             response = make_request('GET', f"{base_url}/ingressos")
             if response:
